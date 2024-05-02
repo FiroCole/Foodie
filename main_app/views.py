@@ -26,13 +26,14 @@ class MealCreate(CreateView):
     fields = '__all__'
     success_url = '/meals'
 
-# class MealUpdate(UpdateView):
-#     model = Meal
-#     fields = '__all__'
+class MealUpdate(UpdateView):
+    model = Meal
+    fields = '__all__'
+    
 
-# class MealDelete(DeleteView):
-#     model = Meal
-#     success_url = '/meals'
+class MealDelete(DeleteView):
+    model = Meal
+    success_url = '/meals'
 
 # CBV for Comments
 class CommentList(ListView):

@@ -11,9 +11,8 @@ class Meal(models.Model):
         return f'{self.name} ({self.id})'
     
     def get_absolute_url(self):
-        return reverse('detail', kwargs={
-            'meal_id': self.id
-        })
+        return reverse('meals_detail', kwargs={'pk': self.pk})
+
 
 class Location(models.Model):
     city = models.CharField(max_length=250)
