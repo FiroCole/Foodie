@@ -1,5 +1,5 @@
 from django.shortcuts import render, redirect
-from .models import Meal, Comment
+from .models import Meal, Comment, User, Location
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 
