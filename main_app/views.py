@@ -13,11 +13,6 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
-def meals_index(request):
-  # We pass data to a template very much like we did in Express!
-  return render(request, 'meals/index.html', {
-    'meals': meals
-  })
 
 # CBV for Meals
 class MealList(ListView):
@@ -29,14 +24,15 @@ class MealDetail(DetailView):
 class MealCreate(CreateView):
     model = Meal
     fields = '__all__'
-
-class MealUpdate(UpdateView):
-    model = Meal
-    fields = '__all__'
-
-class MealDelete(DeleteView):
-    model = Meal
     success_url = '/meals'
+
+# class MealUpdate(UpdateView):
+#     model = Meal
+#     fields = '__all__'
+
+# class MealDelete(DeleteView):
+#     model = Meal
+#     success_url = '/meals'
 
 # CBV for Comments
 class CommentList(ListView):

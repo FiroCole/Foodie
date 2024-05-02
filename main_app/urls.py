@@ -6,4 +6,5 @@ urlpatterns = [
     path('about/', views.about, name='about'),
     # path('meals/',views.meals_index, name='index'),
     path('meals/', views.MealList.as_view(), name='meals_index'),
- ]
+    path('meals/create/', views.MealCreate.as_view(), name='meals_create'),
+     ]

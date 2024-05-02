@@ -3,5 +3,12 @@
 
 <h1>Meal Create Page</h1>
 
-
+<h3>Let's Add a Meal</h3>
+<form action="" method="POST">
+    {% csrf_token %}
+    <table>
+        {{ form.as_table }}
+    </table>
+    <input type="submit" value="Add" class="btn">
+</form>
 {% endblock %}
