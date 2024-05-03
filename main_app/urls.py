@@ -13,5 +13,6 @@ urlpatterns = [
     path('meals/<int:pk>/add_comment', views.add_comment, name='add_comment'),
      
     path('finches/<int:meal_id>/assoc_location/<int:location_id>/', views.assoc_location, name='assoc_location'),
- 
+    
+    path('accounts/signup/', views.signup, name='signup'),
      ]

@@ -1,8 +1,11 @@
 from django.shortcuts import render, redirect
-from .models import Meal, Comment, User, Location
+from .models import Meal, Comment, Location
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
+
+from django.contrib.auth import login
+from django.contrib.auth.forms import UserCreationForm
 
 # Create your views here.
 # Define the home view
@@ -25,6 +28,20 @@ def assoc_location(request, meal_id, location_id):
   Meal.objects.get(id=meal_id).location.add(location_id)
   return redirect('meals_detail', meal_id=meal_id)
 
+def signup(request):
+  error_message = ''
+  if request.method == 'POST':
+    form = UserCreationForm(request.POST)
+    if form.is_valid():
+      user = form.save()
+      login(request, user)
+      return redirect('index')
+    else:
+      error_message = 'Invalid sign up - try again'
+  form = UserCreationForm()
+  context = {'form': form, 'error_message': error_message}
+  return render(request, 'registration/signup.html', context)
+
 # CBV for Meals
 class MealList(ListView):
   model = Meal
@@ -42,6 +59,10 @@ class MealCreate(CreateView):
     model = Meal
     fields = ['name', 'description']
     success_url = '/meals/{id}'
+    
+    def form_valid(self, form):
+      form.instance.user = self.request.user 
+      return super().form_valid(form)
 
 class MealUpdate(UpdateView):
     model = Meal
