@@ -47,6 +47,9 @@ class MealList(ListView):
   model = Meal
   template_name = 'meal_list.html' 
   
+  def get_queryset(self):
+      return Meal.objects.filter(user=self.request.user)
+  
   def get_context_data(self, **kwargs):
         context = super().get_context_data(**kwargs)
         context['comment_form'] = CommentForm()  # Assuming CommentForm is defined

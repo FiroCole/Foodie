@@ -24,7 +24,10 @@
           {% if user.is_authenticated %}
           <li><a href="{% url 'meals_index' %}"> View My Meals</a></li>
           <li><a href="{% url 'meals_create' %}"> Add a Meal</a></li>
-          <li><a href="{% url 'logout' %}">Log Out</a></li>
+          <li><form action="{% url 'logout' %}" method="post">
+            {% csrf_token %}
+            <button type="submit" class="btn-flat" style="color: white; padding: 0; border: none; background: none;">Log Out</button>
+        </form></li>
           {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}">Log In</a></li>
