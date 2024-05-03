@@ -6,6 +6,9 @@ from .forms import CommentForm
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
+from django.contrib.auth.decorators import login_required
+from django.contrib.auth.mixins import LoginRequiredMixin
+from django.contrib.auth import logout
 
 # Create your views here.
 # Define the home view
@@ -16,6 +19,12 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+@login_required
+def user_logout(request):
+    logout(request)
+    return render(request, 'home.html')
+  
+@login_required
 def add_comment(request, pk):
   form = CommentForm(request.POST)
   if form.is_valid():
@@ -43,7 +52,8 @@ def signup(request):
   return render(request, 'registration/signup.html', context)
 
 # CBV for Meals
-class MealList(ListView):
+
+class MealList(LoginRequiredMixin, ListView):
   model = Meal
   template_name = 'meal_list.html' 
   
@@ -55,10 +65,10 @@ class MealList(ListView):
         context['comment_form'] = CommentForm()  # Assuming CommentForm is defined
         return context
 
-class MealDetail(DetailView):
+class MealDetail(LoginRequiredMixin, DetailView):
     model = Meal
 
-class MealCreate(CreateView):
+class MealCreate(LoginRequiredMixin, CreateView):
     model = Meal
     fields = ['name', 'description']
     success_url = '/meals/{id}'
@@ -67,12 +77,12 @@ class MealCreate(CreateView):
       form.instance.user = self.request.user 
       return super().form_valid(form)
 
-class MealUpdate(UpdateView):
+class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
     fields = '__all__'
     
 
-class MealDelete(DeleteView):
+class MealDelete(LoginRequiredMixin, DeleteView):
     model = Meal
     success_url = '/meals'
 

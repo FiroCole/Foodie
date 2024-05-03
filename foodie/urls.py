@@ -1,5 +1,4 @@
-"""
-URL configuration for foodie project.
+""" URL configuration for foodie project.
 
 The `urlpatterns` list routes URLs to views. For more information please see:
     https://docs.djangoproject.com/en/5.0/topics/http/urls/
@@ -16,13 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path, include 
-from django.contrib.auth.views import LogoutView
 
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('', include('main_app.urls')),
-    path('accounts/', include('django.contrib.auth.urls')),
-    path('accounts/logout/', LogoutView.as_view(), name='logout'),
+    path('accounts/', include('django.contrib.auth.urls')),    
 ]
     
