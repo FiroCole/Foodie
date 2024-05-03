@@ -3,6 +3,8 @@ from .models import Meal, Comment, Location
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
 from .forms import CommentForm
+from django.urls import reverse
+from django.shortcuts import get_object_or_404
 
 from django.contrib.auth import login
 from django.contrib.auth.forms import UserCreationForm
@@ -24,14 +26,17 @@ def user_logout(request):
     logout(request)
     return render(request, 'home.html')
   
+
 @login_required
 def add_comment(request, pk):
-  form = CommentForm(request.POST)
-  if form.is_valid():
-    new_comment = form.save(commit=False)
-    new_comment.meal_id = meal_id
-    new_comment.save()
-  return redirect('meals_detail', meal_id=meal_id)
+    form = CommentForm(request.POST)
+    if form.is_valid():
+        new_comment = form.save(commit=False)
+        meal = Meal.objects.get(pk=pk)  # Get the meal object
+        new_comment.meal = meal  # Set the meal of the comment correctly
+        new_comment.save()
+        return redirect('meals_detail', pk=pk)
+
 
 def assoc_location(request, meal_id, location_id):
   Meal.objects.get(id=meal_id).location.add(location_id)
@@ -67,6 +72,14 @@ class MealList(LoginRequiredMixin, ListView):
 
 class MealDetail(LoginRequiredMixin, DetailView):
     model = Meal
+   
+
+    def get_context_data(self, **kwargs):
+        # Call the base implementation first to get a context
+        context = super().get_context_data(**kwargs)
+        # Add in a CommentForm
+        context['comment_form'] = CommentForm()
+        return context
 
 class MealCreate(LoginRequiredMixin, CreateView):
     model = Meal
@@ -93,10 +106,25 @@ class CommentList(ListView):
 class CommentDetail(DetailView):
     model = Comment
 
+
+
 class CommentCreate(CreateView):
     model = Comment
     fields = '__all__'
 
+    def form_valid(self, form):
+        # Get the meal using the meal_id passed in the URL or form
+        meal_id = self.kwargs.get('meal_id')  # Assuming you're capturing 'meal_id' from the URL
+        meal = get_object_or_404(Meal, pk=meal_id)
+        form.instance.meal = meal  # Set the meal of the comment to the meal fetched
+        return super().form_valid(form)
+
+    def get_success_url(self):
+        # Redirects to the meal detail page after the comment is successfully created
+        meal_id = self.kwargs.get('meal_id')
+        return reverse('meals_detail', kwargs={'pk': meal_id})  # Adjust 'meals_detail' to your URL name and kwargs accordingly
+
+    
 class CommentUpdate(UpdateView):
     model = Comment
     fields = '__all__'
