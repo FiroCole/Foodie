@@ -57,9 +57,12 @@ Foodie is designed to help you capture and share the amazing foods and beverages
 <summary> Click here to enjoy the app!</summary>
 <a href="https://foodie2-47bb9d49de7d.herokuapp.com/"
 > https://foodie2-47bb9d49de7d.herokuapp.com/ </a>
-<a href="https://trello.com/invite/b/wwbIjEwt/ATTI79ef99da5459667612b01bb0b5c450e41645EF03/agile-board-template-trello"> My Trello Board </a>
 </details>
 
+<details open>
+<summary> Click here to see my Trello board!</summary>
+<a href="https://trello.com/invite/b/wwbIjEwt/ATTI79ef99da5459667612b01bb0b5c450e41645EF03/agile-board-template-trello"> My Trello Board </a>
+</details>
 
 ## :satellite: Upcoming Features
 - [:x:] Ability to add images of the food
