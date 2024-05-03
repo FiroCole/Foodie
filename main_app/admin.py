@@ -5,4 +5,3 @@ from .models import Comment, Location, Meal, User
 admin.site.register(Comment)
 admin.site.register(Location)
 admin.site.register(Meal)
-admin.site.register(User)

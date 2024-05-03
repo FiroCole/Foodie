@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Meal, Comment, User, Location
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-
+from .forms import CommentForm
 
 # Create your views here.
 # Define the home view
@@ -13,18 +13,35 @@ def home(request):
 def about(request):
     return render(request, 'about.html')
 
+def add_comment(request, pk):
+  form = CommentForm(request.POST)
+  if form.is_valid():
+    new_comment = form.save(commit=False)
+    new_comment.meal_id = meal_id
+    new_comment.save()
+  return redirect('meals_detail', meal_id=meal_id)
+
+def assoc_location(request, meal_id, location_id):
+  Meal.objects.get(id=meal_id).location.add(location_id)
+  return redirect('meals_detail', meal_id=meal_id)
 
 # CBV for Meals
 class MealList(ListView):
   model = Meal
+  template_name = 'meal_list.html' 
+  
+  def get_context_data(self, **kwargs):
+        context = super().get_context_data(**kwargs)
+        context['comment_form'] = CommentForm()  # Assuming CommentForm is defined
+        return context
 
 class MealDetail(DetailView):
     model = Meal
 
 class MealCreate(CreateView):
     model = Meal
-    fields = '__all__'
-    success_url = '/meals'
+    fields = ['name', 'description']
+    success_url = '/meals/{id}'
 
 class MealUpdate(UpdateView):
     model = Meal
