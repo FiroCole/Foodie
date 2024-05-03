@@ -3,26 +3,52 @@ body {
   flex-direction: column;
   min-height: 100vh;
   margin: 0;
-  font-family: 'Arial', sans-serif;
-  background: #f5f5f5;
+  font-family: "Lato", sans-serif;
+  background: url('https://live.staticflickr.com/65535/53695826401_e99fab033b_o.jpg') center center/cover; 
   color: #333;
 }
 
-header.navbar-fixed {
+.welcome  {
+  text-align: left;
+}
+.about {
+  background-color: #f3e5ab98 ;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.row {
+  background-color: #f3e5ab98 ;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+.responsive-table {
+  background-color: #f3e5ab98 ;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  padding: 20px;
+}
+
+header.navbar-fixed nav {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  background-color: #f3e5ab; 
 }
 
 nav {
-  background-color: #0077cc;
-  /* A deep blue shade */
+  background-color: #f3e5ab; 
 }
 
 .nav-wrapper {
   padding: 0 20px;
 }
 
+.nav-wrapper ul li a {
+  font-size: 28px; 
+  color: black;
+}
+
 a {
-  color: #fff;
+  color: #333; 
   text-transform: uppercase;
 }
 
@@ -33,6 +59,7 @@ main {
 
 .card {
   box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  background-color: #f3e5ab98 ;
 }
 
 .card-content {
@@ -45,11 +72,27 @@ main {
 }
 
 .btn {
-  background-color: #ff4081;
-  /* A stylish pink shade for buttons */
+  background-color: ;
   color: white;
 }
 
 .page-footer {
   padding: 10px 20px;
-  background-color: #
+  background-color: #f3e5ab;
+  color: #fff; 
+  font-size: 28px;
+}
+
+form[action*="logout"] {
+  display: inline;
+  padding: 0;
+  margin: 0;
+}
+
+form[action*="logout"] button {
+  border: none;
+  background: none;
+  color: black;
+  font-size: 28px;
+  cursor: pointer;
+}

@@ -9,4 +9,4 @@ class CommentForm(ModelForm):
 class LocationForm(ModelForm):
     class Meta:
         model = Location
-        fields = ['city', 'country']  # Make sure to include 'country' if it's part of the Location model
+        fields = ['city', 'country'] 

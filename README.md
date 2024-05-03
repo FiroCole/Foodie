@@ -1,5 +1,5 @@
 <div id="header" align="center">
-  <img src="https://live.staticflickr.com/65535/53647204692_8096b434a5_o.png" width="800" height="400">
+  <img src="https://live.staticflickr.com/65535/53696441480_d8697548a6_o.jpg" " width="800" height="400">
 </div>
 
 <div id="description" align="center">
@@ -23,8 +23,8 @@ Foodie is designed to help you capture and share the amazing foods and beverages
 
 |               Description               | Screenshot                 |
 | :-------------------------------------: | -------------------------- |
-|          <h3>Landing Page</h3>          | <img src="" width="700" /> |
-| <h3 align="center">Food Index Page</h3> | <img src="" width="700" /> |
+|          <h3>Landing Page</h3>          | <img src="https://live.staticflickr.com/65535/53696441480_d8697548a6_o.jpg" width="700" /> |
+| <h3 align="center">Food Index Page</h3> | <img src="https://live.staticflickr.com/65535/53696360744_2d5249b2e8_o.png" width="700" /> |
 
 
 
@@ -57,7 +57,9 @@ Foodie is designed to help you capture and share the amazing foods and beverages
 <summary> Click here to enjoy the app!</summary>
 <a href="https://foodie2-47bb9d49de7d.herokuapp.com/"
 > https://foodie2-47bb9d49de7d.herokuapp.com/ </a>
+<a href="https://trello.com/invite/b/wwbIjEwt/ATTI79ef99da5459667612b01bb0b5c450e41645EF03/agile-board-template-trello"> My Trello Board </a>
 </details>
+
 
 ## :satellite: Upcoming Features
 - [:x:] Ability to add images of the food

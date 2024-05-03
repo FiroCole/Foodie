@@ -5,8 +5,6 @@ from django.contrib.auth.models import User
 
 
 # Create your models here.
-
-
 class Location(models.Model):
     city = models.CharField(max_length=250)
     country = models.CharField(max_length=250)
@@ -24,10 +22,6 @@ class Meal(models.Model):
     def __str__(self):
         return f'{self.name} ({self.id})'
     
-    # def get_absolute_url(self):
-    #     return reverse('meals_detail', kwargs={'pk': self.pk})
-
-
 
     
 class Comment(models.Model):

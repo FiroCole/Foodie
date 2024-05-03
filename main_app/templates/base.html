@@ -22,13 +22,12 @@
         <ul class="right">
           <li><a href="{% url 'about' %}">About</a></li>
           {% if user.is_authenticated %}
-          <li><a href="{% url 'meals_index' %}"> View My Meals</a></li>
-          <li><a href="{% url 'meals_create' %}"> Add a Meal</a></li>
+          <li><a href="{% url 'meals_index' %}"> View My Food Entries</a></li>
+          <li><a href="{% url 'meals_create' %}"> Add a Food Entry</a></li>
           <li><form action="{% url 'logout' %}" method="post">
             {% csrf_token %}
-            <button type="submit"  class="btn">Log Out</button>
+            <button type="submit"  >Log Out</button>
         </form></li>
-          <!-- <li><a href="{% url 'logout' %}">Log Out</a></li> -->
           {% else %}
           <li><a href="{% url 'signup' %}">Sign Up</a></li>
           <li><a href="{% url 'login' %}">Log In</a></li>
