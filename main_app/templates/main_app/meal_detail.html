@@ -21,7 +21,7 @@
         <form action="{% url 'add_comment' meal.id %}" form method="POST">
             {% csrf_token %}
             {{ comment_form.as_p }}
-            <input type="submit" class="btn" value="Add comment">
+            <input type="submit" class="btn" value="Add Comment">
         </form>
         <table class="striped">
             <thead>

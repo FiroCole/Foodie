@@ -44,7 +44,7 @@ def signup(request):
     if form.is_valid():
       user = form.save()
       login(request, user)
-      return redirect('index')
+      return redirect('meals_index')
     else:
       error_message = 'Invalid sign up - try again'
   form = UserCreationForm()
@@ -79,8 +79,8 @@ class MealCreate(LoginRequiredMixin, CreateView):
 
 class MealUpdate(LoginRequiredMixin, UpdateView):
     model = Meal
-    fields = '__all__'
-    
+    fields = ['name', 'description']
+    success_url = '/meals/{id}'
 
 class MealDelete(LoginRequiredMixin, DeleteView):
     model = Meal
