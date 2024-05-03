@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Meal, Comment, Location
 from django.views.generic.edit import CreateView, UpdateView, DeleteView
 from django.views.generic import ListView, DetailView
-from .forms import CommentForm
+from .forms import CommentForm, LocationForm
 from django.urls import reverse
 from django.shortcuts import get_object_or_404
 
@@ -37,10 +37,18 @@ def add_comment(request, pk):
         new_comment.save()
         return redirect('meals_detail', pk=pk)
 
-
-def assoc_location(request, meal_id, location_id):
-  Meal.objects.get(id=meal_id).location.add(location_id)
-  return redirect('meals_detail', meal_id=meal_id)
+@login_required
+def add_location(request, pk):
+    meal = get_object_or_404(Meal, pk=pk)
+    if request.method == 'POST':
+        form = LocationForm(request.POST)
+        if form.is_valid():
+            location = form.save()
+            meal.location.add(location)  # Adds the location to the meal
+            return redirect('meals_detail', pk=pk)
+    else:
+        form = LocationForm()
+    return render(request, 'add_location.html', {'form': form, 'meal': meal})
 
 def signup(request):
   error_message = ''
@@ -79,6 +87,7 @@ class MealDetail(LoginRequiredMixin, DetailView):
         context = super().get_context_data(**kwargs)
         # Add in a CommentForm
         context['comment_form'] = CommentForm()
+        context['location_form'] = LocationForm()
         return context
 
 class MealCreate(LoginRequiredMixin, CreateView):

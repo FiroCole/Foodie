@@ -1,14 +1,55 @@
 body {
-    display: flex;
-    min-height: 100vh;
-    flex-direction: column;
-  }
-  
-  main {
-    flex: 1 0 auto;
-  }
-  
-  footer.page-footer {
-    padding-top: 0;
-    text-align: right;
-  }
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+  margin: 0;
+  font-family: 'Arial', sans-serif;
+  background: #f5f5f5;
+  color: #333;
+}
+
+header.navbar-fixed {
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+nav {
+  background-color: #0077cc;
+  /* A deep blue shade */
+}
+
+.nav-wrapper {
+  padding: 0 20px;
+}
+
+a {
+  color: #fff;
+  text-transform: uppercase;
+}
+
+main {
+  flex: 1;
+  padding: 20px;
+}
+
+.card {
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+.card-content {
+  padding: 20px;
+}
+
+.card-action {
+  border-top: 1px solid rgba(160, 160, 160, 0.2);
+  padding: 10px 20px;
+}
+
+.btn {
+  background-color: #ff4081;
+  /* A stylish pink shade for buttons */
+  color: white;
+}
+
+.page-footer {
+  padding: 10px 20px;
+  background-color: #
